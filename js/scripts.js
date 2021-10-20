@@ -12,3 +12,6 @@ let doubleSize = size * 2;
 document.write(doubleSize);
 let minSize = (doubleSize * 2) - (size/ 2);
 document.write(minSize);
+let favoriteFood = 'Burger'
+document.write(burger);
+alert('Hello World!!');
