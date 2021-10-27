@@ -16,12 +16,13 @@ if (pokemonList[i].height > 15 && pokemonList[i].height > 17){
   console.log(pokemonList[i].name + ' is a juvinille!' );
 } else if (pokemonList[i].height > 20 && pokemonList[i].height > 25 || pokemonList[i].height > 28){
 console.log(pokemonList[i].name + ' is fully evolved!')
-} else
+} else {
  console.log(pokemonList[i].name + ' is a baby!');
 }
-for (let i = 0; i < pokemonList.length; i++){
+ for (let i = 0; i < pokemonList.length; i++){
   document.write('<ul>');
   document.write(pokemonList[i].name + ' - Height: ' + pokemonList[i].height +'m');
   if (pokemonList[i].height > 12) document.write("   Wow, thats tall!");
   document.write("</ul>");
+ }
 }
