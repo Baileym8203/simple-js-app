@@ -3,26 +3,43 @@ let pokemonList = [
 {name: 'charmander', height: 10, type:'fire'},
 {name:'eve', height: 30, type: ['shock', 'water','fire']}];
 
-console.log(pokemonList);
-console.log(pokemonList[0].name);
-console.log(pokemonList[1].name);
-console.log(pokemonList[2].name);
-console.log(pokemonList[0].type);
-console.log(pokemonList[1].type);
-console.log(pokemonList[2].type);
-
-for (let i = 0; i < pokemonList.length; i++){
-if (pokemonList[i].height > 15 && pokemonList[i].height > 17){
-  console.log(pokemonList[i].name + ' is a juvinille!' );
-} else if (pokemonList[i].height > 20 && pokemonList[i].height > 25 || pokemonList[i].height > 28){
-console.log(pokemonList[i].name + ' is fully evolved!')
+pokemonList.forEach (function(pokemon){
+if (pokemon.height >= 15 && pokemon.height <= 17){
+  console.log(pokemon.name + ' is a juvinille!' );
+} else if (pokemon.height > 20 && pokemon.height > 25 || pokemon.height > 28){
+console.log(pokemon.name + ' is fully evolved!')
 } else {
- console.log(pokemonList[i].name + ' is a baby!');
-}
- for (let i = 0; i < pokemonList.length; i++){
+ console.log(pokemon.name + ' is a baby!');
+};
+ pokemonList.forEach(function(pokemon){
   document.write('<ul>');
-  document.write(pokemonList[i].name + ' - Height: ' + pokemonList[i].height +'m');
-  if (pokemonList[i].height > 12) document.write("   Wow, thats tall!");
+  document.write(pokemon.name + ' - Height: ' + pokemon.height +'m');
+  if (pokemon.height > 12) document.write("   Wow, thats tall!");
   document.write("</ul>");
  }
+)});
+
+let pokemonRepository = (function () {
+let pokemonList = [{name: 'bulbassour', height: 12, type: 'nature'},
+{name: 'charmander', height: 10, type:'fire'},
+{name:'eve', height: 30, type: ['shock', 'water','fire']}];
+
+function add(pokemon) {
+  pokemonList.push(pokemon);
 }
+  
+
+
+  function getAll() {
+  return pokemonList;
+ }
+
+return {
+add: add,
+getAll: getAll
+};
+})();
+
+console.log(pokemonRepository.getAll());
+pokemonRepository.add({name: 'pikachu', height: 7, type: 'shock'});
+console.log(pokemonRepository.getAll());
