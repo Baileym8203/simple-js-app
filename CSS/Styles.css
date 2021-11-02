@@ -1,4 +1,23 @@
 body {
 background-color: whitesmoke;
 font-size: 18px;
+font-family: 'Bebas Neue'
 }
+
+.button-class {
+border: 2px black solid;
+background-color: lightgrey;
+color: red;
+}
+
+li {
+list-style: none;
+
+}
+
+.additional-information {
+    display: none;
+  }
+  .additional-information.is-visible {
+    display: block;
+  }
