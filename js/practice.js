@@ -77,15 +77,168 @@ console.log(mainTitle.innerText); // -> <h1></h1>
 mainTitle.innerText = 'THIS IS EPIC';
 console.log(mainTitle.innerText); // -> <h1>THIS IS EPIC</h1>
 
-let container = document.querySelector('.container');
-container.innerHTML = '<button>Click Me</button>';
-console.log(container.innerHTML);
+//let container = document.querySelector('.container');
+//container.innerHTML = '<button>Click Me</button>';
+//console.log(container.innerHTML);
 
 //-- HTML --
 //<div class='container'>
-  //<p>This is a paragraph</p>
+//<p>This is a paragraph</p>
 //</div>
 
 //-- JAVASCRIPT --
 //let elementToRemove = document.querySelector('p');
 //elementToRemove.parentElement.removeChild(elementToRemove);
+
+ let pokemon1 = document.querySelector('p');
+console.log(pokemon1.innerText);
+pokemon1.innerText = 'No Way this just can\'t be real!!!!';
+console.log(pokemon1.innerText);
+
+
+
+let tetrisExtra = (function() {
+let tetrisArray = [
+{name: 'hello', timer: 2 },
+{name: 'square', timer: 4}];
+
+function add(tetris) {
+tetrisArray.push(tetris);
+}
+
+function getAll() {
+return tetrisArray
+}
+
+return {
+add: add,
+getAll: getAll
+}
+
+})();
+
+tetrisExtra.getAll().forEach(function(tetris) {
+document.write('<li>');
+if (tetris.timer >= 0 && tetris.timer <= 10) {
+console.log(tetris.name + ' is a small shape!!');
+} else if (tetris.timer >= 11 && tetris.timer <= 20) {
+console.log(tetris.name + ' is a bigger shape');
+} else {
+console.log(tetris.name + ' shape is moderatly sized!!');
+}
+});
+
+
+let tetrisGood = (function () {
+let tetrisGreat = [
+{name: '007', timer: 2},
+{name: 'we\'ve', timer: 10},
+{name: '911', timer: 15}];
+
+function add(tetris) {
+tetrisGreat.push(tetris)
+}
+function getAll() {
+return tetrisGreat
+}
+return {
+add: add,
+getAll: getAll
+  }
+ }
+)();
+
+tetrisGood.getAll().forEach(function(tetris) {
+document.write('<li>');
+if (tetris.timer >= 0 && tetris.timer <= 10) {
+console.log(tetris.name + ' is coming next!');
+} else if (tetris.timer >= 11 && tetris.timer <= 20) {
+console.log(tetris.name + ' is coming soon!');
+} else {
+console.log(tetris.name + ' is far from coming!!')
+}
+});
+
+console.log(tetrisGood.getAll());
+console.log(tetrisGood.add({name: 'square', timer: 20}));
+
+console.log(tetrisGood[1]);
+
+let paragraph = document.querySelector('p');
+console.log(paragraph.innerText);
+paragraph.innerText = 'There just is no way back!!'
+console.log(paragraph.innerText);
+
+document.querySelector('.show-More').addEventListener('click', function() {
+document.querySelector('.num1')
+.classList.toggle('notSee');
+});
+
+let counter = 1;
+function numhigher() {
+ counter = counter * 2
+}
+// async practice \\
+setTimeout(function() {
+console.log('first number', counter);
+numhigher();
+}, 10000);
+
+let exampleEasy = new Promise(function (resolve, reject) {
+  let divisor;
+  setTimeout(function() {
+   divisor = 6/2;
+   if(divisor < 3) {
+   resolve(divisor);
+   } else {
+   reject('this is not working as intended!');
+   }
+  }, 2000);
+ });
+ // promise practice \\
+ console.log('I was walkin the other day!');
+ exampleEasy.then(function(result){
+ console.log(result);
+ }).catch(function(error) {
+   console.log(error);
+ });
+ console.log('I was walkin the other day!');
+// JSON practice \\
+ let jsonStringFromServer = '{"name":"Lisa","age":27}';
+let lisa = JSON.parse(jsonStringFromServer);
+console.log(lisa.name, lisa.age); // 'Lisa', 27
+
+let john = {
+  name: 'John',
+  age: 31
+};
+let jsonString = JSON.stringify(john);
+console.log(jsonString); // '{"name":"John","age":31}'
+// JSOn parse makes it avalible for JSON string does the oppisite making it good for JS \\
+let list = [1, 2, 3];
+console.log(JSON.stringify(list)); // '[1,2,3]'
+let otherList = JSON.parse('[3,4,5]'); // [3, 4, 5]
+// you can use the copy to create a complete copy of a object if it DOESN"T INCLUDE FUNCTIONS! \\
+let copy = JSON.parse(JSON.stringify(obj))
+
+// www. is where you place the JSON api link \\
+fetch('www.').then(function (response) {
+  return response.json();
+  }).then(function (pokemonList) {
+    console.log(pokemonList);
+  }).catch(function () {
+  
+  });
+
+  fetch('https://www.youtube.com', { // finds the API \\
+method: 'get' // gets the API using http response \\
+}).then(function (response) { // then function is response \\
+  return response.json(); // function gives the response \\
+}).then(function (json) { // then function is json \\
+  console.log(json); //the console logs json \\
+}).catch(function () { // it then catches if it can't find the link or failed to work with an error \\
+
+});
+
+
+

@@ -1,8 +1,6 @@
 let pokemonRepository = (function () {
-let pokemonList = [{name: 'bulbassour', height: 12, type: 'nature'},
-{name: 'charmander', height: 10, type:'fire'},
-{name:'eve', height: 30, type: ['shock', 'water','fire']}];
-
+let pokemonList = []
+let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 function add(pokemon) {
   pokemonList.push(pokemon);
 }
@@ -13,7 +11,7 @@ function add(pokemon) {
 
  function addListItem(pokemon){
   let pokemonList = document.querySelector('.pokemon-list');
-  let listPokemon = document.createElement('li');
+  let listPokemon = document.createElement('p');
   let button = document.createElement('button');
   button.innerText = (pokemon.name);
   button.classList.add('button-class');
@@ -24,15 +22,58 @@ function add(pokemon) {
  function showDetails(pokemon) {
    console.log(pokemon)
  }
-   return {
-add: add,
-getAll: getAll,
-addListItem: addListItem
+   
+function loadList() {
+  return fetch(apiUrl).then(function (response) {
+    return response.json();
+  }).then(function (json) {
+    json.results.forEach(function (item) {
+      let pokemon = {
+        name: item.name,
+        detailsUrl: item.url
+      };
+      add(pokemon);
+    });
+  }).catch(function (e) {
+    console.error(e);
+  })
+} 
+function loadDetails(item) {
+  let url = item.detailsUrl;
+  return fetch(url).then(function (response) {
+    return response.json();
+  }).then(function (details) {
+    // Now we add the details to the item
+    item.imageUrl = details.sprites.front_default;
+    item.height = details.height;
+    item.types = details.types;
+  }).catch(function (e) {
+    console.error(e);
+  });
+}
+function showDetails(pokemon) {
+  loadDetails(pokemon).then(function () {
+    console.log(pokemon);
+  });
+}
+return {
+  add: add,
+  getAll: getAll,
+  addListItem: addListItem,
+  loadList: loadList,
+  loadDetails: loadDetails
 };
+
+
 })();
 
+pokemonRepository.loadList().then(function() {
+// Now the data is loaded!
+pokemonRepository.getAll().forEach(function(pokemon){
+  pokemonRepository.addListItem(pokemon);
+});
+});
 console.log(pokemonRepository.getAll());
-pokemonRepository.add({name: 'pikachu', height: 7, type: 'shock'});
 console.log(pokemonRepository.getAll());
 
 pokemonRepository.getAll().forEach(function(pokemon){
@@ -52,4 +93,12 @@ pokemonRepository.addListItem(pokemon);
 document.querySelector('.show-more').addEventListener('click', function () {
   document.querySelector('.additional-information')
     .classList.toggle('is-visible');
+});
+
+fetch('https://pokeapi.co/api/v2/pokemon/?limit=150').then(function (response) {
+  return response.json(); // This returns a promise!
+}).then(function (pokemonList) {
+  console.log(pokemonList); // The actual JSON response
+}).catch(function () {
+  // Error
 });
