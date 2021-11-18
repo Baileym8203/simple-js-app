@@ -17,7 +17,10 @@ function add(pokemon) {
   let button = document.createElement('button');
   button.innerText = (pokemon.name);
   button.classList.add('button-class');
-  
+  button.setAttribute("data-target", "#exampleModal");
+  button.setAttribute("data-toggle", "modal");
+
+
   button.classList.add('btn-light')
   listPokemon.appendChild(button);
   pokemonList.appendChild(listPokemon);
@@ -74,7 +77,9 @@ function showModal(item) {
   // creating element for height in modal content \\
   let heightElement = $("<p>" + "height : " + item.height + "</p>");
   // creating element for the weight in the modal content \\
-  let typesElement = $("<p>" + "types : " + item.types + "</p>");
+  let typesElement = $(
+      "<p>" + "types : " + item.types.map((t) => t.type.name).join(",") + "</p>"
+    );
  
   modalTitle.append(nameElement);
   modalBody.append(imageElementFront);
