@@ -11,7 +11,8 @@ function add(pokemon) {
 
  function addListItem(pokemon){
   let pokemonList = document.querySelector('.pokemon-list');
-  pokemonList.classList.add('group-list')
+  pokemonList.classList.add('col');
+  pokemonList.classList.add('group-list');
   let listPokemon = document.createElement('li');
   listPokemon.classList.add('group-list-item')
   let button = document.createElement('button');
@@ -101,18 +102,6 @@ pokemonRepository.loadList().then(function() {
 pokemonRepository.getAll().forEach(function(pokemon){
   pokemonRepository.addListItem(pokemon);
 });
-});
-console.log(pokemonRepository.getAll());
-console.log(pokemonRepository.getAll());
-
-pokemonRepository.getAll().forEach(function(pokemon){
-  if (pokemon.height >= 15 && pokemon.height <= 17){
-    console.log(pokemon.name + ' is a juvinille!' );
-  } else if (pokemon.height > 20 && pokemon.height > 25 || pokemon.height > 28){
-  console.log(pokemon.name + ' is fully evolved!')
-  } else {
-   console.log(pokemon.name + ' is a baby!');
-  };
 });
 
 pokemonRepository.getAll().forEach(function(pokemon){

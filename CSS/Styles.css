@@ -1,13 +1,13 @@
+
 body {
 background-color: whitesmoke;
 font-size: 18px;
 font-family: 'Bebas Neue';
 display: flex;
-
 }
 
 .button-class {
-  background-color: #4caf50; /* Green */
+  background-color: rgba(20, 20, 20, 0.904); /* Green */
   border: 12px grey solid;
   color: white;
   padding: 16px 32px;
@@ -22,7 +22,7 @@ display: flex;
   cursor: pointer;
   background-color: white;
   color: black;
-  border: 2px solid #4caf50;
+  border: 2px solid rgba(20, 20, 20, 0.904);
 }
   
 li {
@@ -33,3 +33,12 @@ list-style: none;
 .pokemon-list {
 margin-top: 75px;
 }
+
+.group-list{
+justify-content: center ;
+}
+
+.modal-content{
+box-shadow: 2px 3px 2px 2px rgb(20, 20, 20);
+}
+
