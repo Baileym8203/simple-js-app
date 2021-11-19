@@ -2,7 +2,7 @@
 This app will tell you all the basic info about any Pokemon you want out of the 150 loaded pokemon from the pokemon V2 api. It will tell you the height, and types of pokemon as well as their names. And once you have clicked it will open an extra page to show the info described as well as the image of that evolution of pokemon like Charmander vs Charizard.
 
 ## My Role?
-I was the full programer, and coderr behind this project. I did everything from the contrast picking to the behind the scenes code. ps It Was Fun!
+I was the full programer, and coder behind this project. I did everything from the contrast picking to the behind the scenes code. ps It Was Fun!
 
 
 
