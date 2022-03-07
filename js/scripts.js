@@ -1,6 +1,6 @@
 let pokemonRepository = (function () {
   let t = [],
-    e = "https://pokeapi.co/api/v2/pokemon/?limit=1126";
+    e = "https://pokeapi.co/api/v2/pokemon/?limit=500";
   return {
     getAll: function () {
       return t;
@@ -80,7 +80,7 @@ pokemonRepository.loadList().then(function () {
   pokemonRepository.getAll().forEach(function (t) {
     pokemonRepository.addListItem(t);
   }),
-  fetch("https://pokeapi.co/api/v2/pokemon/?limit=150")
+  fetch("https://pokeapi.co/api/v2/pokemon/?limit=500")
     .then(function (t) {
       return t.json();
     })
