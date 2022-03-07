@@ -1,117 +1,90 @@
 let pokemonRepository = (function () {
-let pokemonList = []
-let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-function add(pokemon) {
-  pokemonList.push(pokemon);
-}
-  
- function getAll() {
-  return pokemonList;
- }
-
- function addListItem(pokemon){
-  let pokemonList = document.querySelector('.pokemon-list');
-  pokemonList.classList.add('col');
-  pokemonList.classList.add('group-list');
-  let listPokemon = document.createElement('li');
-  listPokemon.classList.add('group-list-item')
-  let button = document.createElement('button');
-  button.innerText = (pokemon.name);
-  button.classList.add('button-class');
-  button.setAttribute("data-target", "#exampleModal");
-  button.setAttribute("data-toggle", "modal");
-
-
-  button.classList.add('btn-light')
-  listPokemon.appendChild(button);
-  pokemonList.appendChild(listPokemon);
-  button.addEventListener('click', function() {showDetails(pokemon)});
-  
-}
-function loadList() {
-  return fetch(apiUrl).then(function (response) {
-    return response.json();
-  }).then(function (json) {
-    json.results.forEach(function (item) {
-      let pokemon = {
-        name: item.name,
-        detailsUrl: item.url
-      };
-      add(pokemon);
-    });
-  }).catch(function (e) {
-    console.error(e);
-  })
-}
-function loadDetails(item) {
-  let url = item.detailsUrl;
-  return fetch(url).then(function (response) {
-    return response.json();
-  }).then(function (details) {
-    // Now we add the details to the item
-    item.imageUrl = details.sprites.front_default;
-    item.height = details.height;
-    item.types = details.types;
-  }).catch(function (e) {
-    console.error(e);
-  });
-}
-function showDetails(pokemon) {
-  loadDetails(pokemon).then(function () {
-    showModal(pokemon);
-  });
-}
-
-function showModal(item) {
-  let modalBody = $(".modal-body");
-  let modalTitle = $(".modal-title");
-  let modalHeader = $(".modal-header");
-  modalHeader.empty();
-  modalTitle.empty();
-  modalBody.empty();
-  //modalHeader.empty();
-  // creating element for name in modal \\
-  let nameElement = $("<h1>" + item.name + "</h1>");
-  // creating the image in modal content
-  let imageElementFront = $('<img class="modal-img" style="width:50%">');
-  imageElementFront.attr("src", item.imageUrl);
-  // creating element for height in modal content \\
-  let heightElement = $("<p>" + "height : " + item.height + "</p>");
-  // creating element for the weight in the modal content \\
-  let typesElement = $(
-      "<p>" + "types : " + item.types.map((t) => t.type.name).join(",") + "</p>"
-    );
- 
-  modalTitle.append(nameElement);
-  modalBody.append(imageElementFront);
-  modalBody.append(heightElement);
-  modalBody.append(typesElement);
-  
- }
-
+  let t = [],
+    e = "https://pokeapi.co/api/v2/pokemon/?limit=1126";
   return {
-    
-    getAll: getAll,
-    addListItem: addListItem,
-    loadList: loadList,
-    
+    getAll: function () {
+      return t;
+    },
+    addListItem: function (t) {
+      let e = document.querySelector(".pokemon-list");
+      e.classList.add("col"), e.classList.add("group-list");
+      let n = document.createElement("li");
+      n.classList.add("group-list-item");
+      let o = document.createElement("button");
+      (o.innerText = t.name),
+        o.classList.add("button-class"),
+        o.setAttribute("data-target", "#exampleModal"),
+        o.setAttribute("data-toggle", "modal"),
+        o.classList.add("btn-dark"),
+        n.appendChild(o),
+        e.appendChild(n),
+        o.addEventListener("click", function () {
+          !(function (t) {
+            (function (t) {
+              let e = t.detailsUrl;
+              return fetch(e)
+                .then(function (t) {
+                  return t.json();
+                })
+                .then(function (e) {
+                  (t.imageUrl = e.sprites.front_default),
+                    (t.height = e.height),
+                    (t.types = e.types);
+                })
+                .catch(function (t) {
+                  console.error(t);
+                });
+            })(t).then(function () {
+              !(function (t) {
+                let e = $(".modal-body");
+                let n = $(".modal-header");
+                $(".modal-header").empty(), n.empty(), e.empty();
+                let o = $("<h5>" + t.name + "</h5>"),
+                  i = $('<img class="modal-img" style="width:75%">');
+                i.attr("src", t.imageUrl);
+                let a = $("<p>height - " + t.height + " in" + "</p>"),
+                  l = $(
+                    "<p> types - " +
+                      t.types.map((t) => t.type.name).join(",") +
+                      "</p>"
+                  );
+                n.append(i), e.append(o), e.append(a), e.append(l);
+              })(t);
+            });
+          })(t);
+        });
+    },
+    loadList: function () {
+      return fetch(e)
+        .then(function (t) {
+          return t.json();
+        })
+        .then(function (e) {
+          e.results.forEach(function (e) {
+            !(function (e) {
+              t.push(e);
+            })({ name: e.name, detailsUrl: e.url });
+          });
+        })
+        .catch(function (t) {
+          console.error(t);
+        });
+    },
   };
 })();
-pokemonRepository.loadList().then(function() {
-// Now the data is loaded!
-pokemonRepository.getAll().forEach(function(pokemon){
-  pokemonRepository.addListItem(pokemon);
-});
-});
-
-pokemonRepository.getAll().forEach(function(pokemon){
-pokemonRepository.addListItem(pokemon);
-})
-
-fetch('https://pokeapi.co/api/v2/pokemon/?limit=150').then(function (response) {
-  return response.json(); // This returns a promise!
-}).then(function (pokemonList) {
-  console.log(pokemonList); // The actual JSON response
-}).catch(function () {
-  // Error
-});
+pokemonRepository.loadList().then(function () {
+  pokemonRepository.getAll().forEach(function (t) {
+    pokemonRepository.addListItem(t);
+  });
+}),
+  pokemonRepository.getAll().forEach(function (t) {
+    pokemonRepository.addListItem(t);
+  }),
+  fetch("https://pokeapi.co/api/v2/pokemon/?limit=150")
+    .then(function (t) {
+      return t.json();
+    })
+    .then(function (t) {
+      console.log(t);
+    })
+    .catch(function () {});
